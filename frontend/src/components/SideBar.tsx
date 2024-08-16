@@ -93,11 +93,11 @@ export default function SideBar() {
       </div>
       <div className={s.footer}>
         <ThemeSwitcher />
-        <Tooltip label={t('about')}>
-          <Link to="/about" className={s.iconWrapper}>
-            <Info size={20} />
-          </Link>
-        </Tooltip>
+        {/*<Tooltip label={t('about')}>*/}
+        {/*  <Link to="/about" className={s.iconWrapper}>*/}
+        {/*    <Info size={20} />*/}
+        {/*  </Link>*/}
+        {/*</Tooltip>*/}
       </div>
     </div>
   );
