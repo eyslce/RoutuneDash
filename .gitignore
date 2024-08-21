@@ -6,3 +6,5 @@ frontend/dist
 .env
 cache.db
 config.yaml
+config.yaml.bak
+Country.mmdb

@@ -36,4 +36,6 @@ export const data = {
   lang: '语言',
   update_all_rule_provider: '更新所有 rule provider',
   update_all_proxy_provider: '更新所有 proxy providers',
+  update_config: '更新配置',
+  subscribe_url: '订阅地址',
 };

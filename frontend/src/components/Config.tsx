@@ -18,6 +18,8 @@ import { connect, useStoreActions } from './StateProvider';
 import Switch from './SwitchThemed';
 import TrafficChartSample from './TrafficChartSample';
 // import ToggleSwitch from './ToggleSwitch';
+import { loadSubscribe, saveSubscribe } from '../misc/subscribe';
+import { UpdateConfig } from "../../wailsjs/go/main/App";
 
 const { useEffect, useState, useCallback, useRef, useMemo } = React;
 
@@ -76,6 +78,7 @@ type ConfigImplProps = {
   selectedChartStyleIndex: number;
   latencyTestUrl: string;
   apiConfig: ClashAPIConfig;
+  callbackMsg: string;
 };
 
 function ConfigImpl({
@@ -84,8 +87,10 @@ function ConfigImpl({
   selectedChartStyleIndex,
   latencyTestUrl,
   apiConfig,
+  callbackMsg,
 }: ConfigImplProps) {
   const [configState, setConfigStateInternal] = useState(configs);
+  const [callbackState, setCallbackState] = useState(callbackMsg)
   const refConfigs = useRef(configs);
   useEffect(() => {
     if (refConfigs.current !== configs) {
@@ -136,6 +141,10 @@ function ConfigImpl({
           }
           setConfigState(name, value);
           break;
+        case 'subscribe-url': {
+          saveSubscribe(value);
+          break;
+        }
         default:
           return;
       }
@@ -168,12 +177,23 @@ function ConfigImpl({
           updateAppConfig(name, value);
           break;
         }
+        case'subscribe-url': {
+          saveSubscribe(value);
+          break
+        }
         default:
           throw new Error(`unknown input name ${name}`);
       }
     },
     [apiConfig, dispatch, updateAppConfig]
   );
+
+  const handleUpdateConfig = useCallback(() => {
+    const url = loadSubscribe()
+    UpdateConfig(url).then(r =>{
+      setCallbackState(r)
+    })
+  }, [apiConfig]);
 
   const mode = useMemo(() => {
     const m = configState.mode;
@@ -183,97 +203,120 @@ function ConfigImpl({
   const { t, i18n } = useTranslation();
 
   return (
-    <div>
-      <ContentHeader title={t('Config')} />
-      <div className={s0.root}>
-        {portFields.map((f) =>
-          configState[f.key] !== undefined ? (
-            <div key={f.key}>
-              <div className={s0.label}>{f.label}</div>
-              <Input
-                name={f.key}
-                value={configState[f.key]}
-                onChange={handleInputOnChange}
-                onBlur={handleInputOnBlur}
+      <div>
+        <ContentHeader title={t('Config')}/>
+        <div className={s0.root}>
+          {portFields.map((f) =>
+              configState[f.key] !== undefined ? (
+                  <div key={f.key}>
+                    <div className={s0.label}>{f.label}</div>
+                    <Input
+                        name={f.key}
+                        value={configState[f.key]}
+                        onChange={handleInputOnChange}
+                        onBlur={handleInputOnBlur}
+                    />
+                  </div>
+              ) : null
+          )}
+
+          <div>
+            <div className={s0.label}>Mode</div>
+            <Select
+                options={modeOptions}
+                selected={mode}
+                onChange={(e) => handleChangeValue({name: 'mode', value: e.target.value})}
+            />
+          </div>
+
+          <div>
+            <div className={s0.label}>Log Level</div>
+            <Select
+                options={logLeveOptions}
+                selected={configState['log-level']}
+                onChange={(e) => handleChangeValue({name: 'log-level', value: e.target.value})}
+            />
+          </div>
+
+          <div>
+            <div className={s0.label}>Allow LAN</div>
+            <div className={s0.wrapSwitch}>
+              <Switch
+                  name="allow-lan"
+                  checked={configState['allow-lan']}
+                  onChange={handleSwitchOnChange}
               />
             </div>
-          ) : null
-        )}
-
-        <div>
-          <div className={s0.label}>Mode</div>
-          <Select
-            options={modeOptions}
-            selected={mode}
-            onChange={(e) => handleChangeValue({ name: 'mode', value: e.target.value })}
-          />
-        </div>
-
-        <div>
-          <div className={s0.label}>Log Level</div>
-          <Select
-            options={logLeveOptions}
-            selected={configState['log-level']}
-            onChange={(e) => handleChangeValue({ name: 'log-level', value: e.target.value })}
-          />
-        </div>
-
-        <div>
-          <div className={s0.label}>Allow LAN</div>
-          <div className={s0.wrapSwitch}>
-            <Switch
-              name="allow-lan"
-              checked={configState['allow-lan']}
-              onChange={handleSwitchOnChange}
-            />
           </div>
         </div>
-      </div>
 
-      <div className={s0.sep}>
-        <div />
-      </div>
-
-      <div className={s0.section}>
-        <div>
-          <div className={s0.label}>{t('latency_test_url')}</div>
-          <SelfControlledInput
-            name="latencyTestUrl"
-            type="text"
-            value={latencyTestUrl}
-            onBlur={handleInputOnBlur}
-          />
+        <div className={s0.sep}>
+          <div/>
         </div>
-        <div>
-          <div className={s0.label}>{t('lang')}</div>
+
+        <div className={s0.section}>
           <div>
-            <Select
-              options={langOptions}
-              selected={i18n.language}
-              onChange={(e) => i18n.changeLanguage(e.target.value)}
+            <div className={s0.label}>{t('subscribe_url')}</div>
+            <Input
+                name="subscribe-url"
+                value={loadSubscribe()}
+                onChange={handleInputOnChange}
+                onBlur={handleInputOnBlur}
+            />
+          </div>
+          <div>
+            <div className={s0.label}>{callbackState}</div>
+            <Button
+                label={t('update_config')}
+                onClick={handleUpdateConfig}
             />
           </div>
         </div>
 
-        <div>
-          <div className={s0.label}>{t('chart_style')}</div>
-          <Selection2
-            OptionComponent={TrafficChartSample}
-            optionPropsList={propsList}
-            selectedIndex={selectedChartStyleIndex}
-            onChange={selectChartStyleIndex}
-          />
+        <div className={s0.sep}>
+          <div/>
         </div>
 
-        <div>
-          <div className={s0.label}>Action</div>
-          <Button
-            start={<LogOut size={16} />}
-            label="Switch backend"
-            onClick={openAPIConfigModal}
-          />
+        <div className={s0.section}>
+          <div>
+            <div className={s0.label}>{t('latency_test_url')}</div>
+            <SelfControlledInput
+                name="latencyTestUrl"
+                type="text"
+                value={latencyTestUrl}
+                onBlur={handleInputOnBlur}
+            />
+          </div>
+          <div>
+            <div className={s0.label}>{t('lang')}</div>
+            <div>
+              <Select
+                  options={langOptions}
+                  selected={i18n.language}
+                  onChange={(e) => i18n.changeLanguage(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className={s0.label}>{t('chart_style')}</div>
+            <Selection2
+                OptionComponent={TrafficChartSample}
+                optionPropsList={propsList}
+                selectedIndex={selectedChartStyleIndex}
+                onChange={selectChartStyleIndex}
+            />
+          </div>
+
+          <div>
+            <div className={s0.label}>Action</div>
+            <Button
+                start={<LogOut size={16}/>}
+                label="Switch backend"
+                onClick={openAPIConfigModal}
+            />
+          </div>
         </div>
       </div>
-    </div>
   );
 }

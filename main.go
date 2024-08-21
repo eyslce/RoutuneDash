@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	_ "github.com/eyslce/clash/log"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
