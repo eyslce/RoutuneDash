@@ -1,5 +1,10 @@
 name: clashy build
 
+on:
+  push:
+    tags:
+    # Match any new tag
+      - '*'
 
 jobs:
   build:
