@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/eyslce/clash v0.0.0-20240821091434-e0e40e1f5337
-	github.com/eyslce/lumberjack v1.0.2
+	github.com/eyslce/lumberjack v1.0.3
 	github.com/wailsapp/wails/v2 v2.9.1
 	go.uber.org/automaxprocs v1.5.3
 )

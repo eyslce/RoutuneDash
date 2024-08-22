@@ -13,6 +13,8 @@ github.com/eyslce/clash v0.0.0-20240821091434-e0e40e1f5337 h1:IPyl5MU4y2+wQ8MNEM
 github.com/eyslce/clash v0.0.0-20240821091434-e0e40e1f5337/go.mod h1:DGONCuv7LFLq6Sb/YGMqMd6HGiB19OFJHOmNySxYM2I=
 github.com/eyslce/lumberjack v1.0.2 h1:wUx+oS8z4aVzb8MLqqN9aeLbeG4xB8Os40nDG4JMoyU=
 github.com/eyslce/lumberjack v1.0.2/go.mod h1:GbZlooX+LUBPSPs3vFzp6Fjre76YCL4m9ZjuxT59dsk=
+github.com/eyslce/lumberjack v1.0.3 h1:9G67DUXJ+gCvS64P4CvaCqsOYfogKtd0dS2+U9tWekc=
+github.com/eyslce/lumberjack v1.0.3/go.mod h1:GbZlooX+LUBPSPs3vFzp6Fjre76YCL4m9ZjuxT59dsk=
 github.com/eyslce/protobytes v0.1.0 h1:IQP8/gBCEBh+ASOEFxkIz4PQM109SJhN1hGN9rGAmys=
 github.com/eyslce/protobytes v0.1.0/go.mod h1:2TTTFQx4qDqFlW+I+Sk6Z9GRI/ARHCARRjia/fNqqR8=
 github.com/go-chi/chi/v5 v5.0.10 h1:rLz5avzKpjqxrYwXNfmjkrYYXOyLJd37pz53UFHC6vk=
