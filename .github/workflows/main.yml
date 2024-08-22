@@ -7,11 +7,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build: [
-          {name: clashy-linux, platform: linux/amd64, os: ubuntu-latest},
-          {name: clashy, platform: windows/amd64, os: windows-latest},
-          {name: clashy, platform: darwin/universal, os: macos-latest}
-        ]
+         build:
+          - name: 'clashy-linux'
+            platform:  'linux/amd64'
+            os: 'ubuntu-latest'
+          - name: 'clashy'
+            platform:  'windows/amd64'
+            os: 'windows-latest'
+          - name: 'clashy'
+            platform:  'darwin/universal'
+            os: 'macos-latest'
     runs-on: ${{ matrix.build.os }}
     steps:
       - uses: actions/checkout@v4
@@ -25,4 +30,5 @@ jobs:
           build-name: ${{ matrix.build.name }}
           build-platform: ${{ matrix.build.platform }}
           go-version: '1.22'
+          node-version: '20.x'
           wails-build-webview2: embed
