@@ -1,7 +1,10 @@
 ---
 name: clashy build
 
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
