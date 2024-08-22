@@ -33,7 +33,7 @@ func main() {
 			app,
 		},
 		Linux: &linux.Options{
-			Icon: getIco(),
+			Icon: app.getAppIcon(),
 		},
 	})
 
@@ -41,13 +41,4 @@ func main() {
 		println("Error:", err.Error())
 	}
 
-}
-
-func getIco() []byte {
-	bytes, err := assets.ReadFile("frontend/dist/app.png")
-	if err != nil {
-		println("Error:", err.Error())
-		return nil
-	}
-	return bytes
 }

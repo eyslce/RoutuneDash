@@ -158,3 +158,12 @@ func (a *App) backupAndCreateNewConfig(bytes []byte) error {
 	}
 	return nil
 }
+
+func (a *App) getAppIcon() []byte {
+	bytes, err := assetConfig.ReadFile("assets/app.png")
+	if err != nil {
+		println("Error:", err.Error())
+		return nil
+	}
+	return bytes
+}
