@@ -2,6 +2,7 @@ package main
 
 import (
 	"clashy/internal/client"
+	"clashy/internal/logger"
 	"context"
 	"embed"
 	"github.com/eyslce/clash/config"
@@ -44,7 +45,12 @@ func (a *App) startup(ctx context.Context) {
 
 // initClash initializes the clash runtime
 func (a *App) initClash() {
-	a.initConfig()
+	currentDir, _ := os.Getwd()
+	constant.SetHomeDir(currentDir)
+	// 初始化日志
+	logger.InitLogger(currentDir)
+	// 初始化配置文件
+	a.initConfig(currentDir)
 
 	if err := config.InitMMDB(); err != nil {
 		log.Errorln("Initial mmdb error: %s", err.Error())
@@ -70,9 +76,7 @@ func (a *App) initClash() {
 	executor.ApplyConfig(cfg, true)
 }
 
-func (a *App) initConfig() {
-	currentDir, _ := os.Getwd()
-	constant.SetHomeDir(currentDir)
+func (a *App) initConfig(currentDir string) {
 	cfgFile := filepath.Join(currentDir, configFile)
 	fileinfo, err := os.OpenFile(cfgFile, os.O_RDWR|os.O_CREATE, 0666)
 	defer func(fileinfo *os.File) {

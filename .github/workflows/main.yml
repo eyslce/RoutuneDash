@@ -1,3 +1,4 @@
+---
 name: clashy build
 
 on: [push]
@@ -7,17 +8,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-         build:
+        build:
           - name: 'clashy-linux'
-            platform:  'linux/amd64'
+            platform: 'linux/amd64'
             os: 'ubuntu-latest'
           - name: 'clashy'
-            platform:  'windows/amd64'
+            platform: 'windows/amd64'
             os: 'windows-latest'
           - name: 'clashy'
-            platform:  'darwin/universal'
+            platform: 'darwin/universal'
             os: 'macos-latest'
     runs-on: ${{ matrix.build.os }}
+
     steps:
       - uses: actions/checkout@v4
         with:

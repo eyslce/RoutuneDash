@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { LogOut } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import * as logsApi from 'src/api/logs';
 import Select from 'src/components/shared/Select';
@@ -308,14 +307,14 @@ function ConfigImpl({
             />
           </div>
 
-          <div>
-            <div className={s0.label}>Action</div>
-            <Button
-                start={<LogOut size={16}/>}
-                label="Switch backend"
-                onClick={openAPIConfigModal}
-            />
-          </div>
+          {/*<div>*/}
+          {/*  <div className={s0.label}>Action</div>*/}
+          {/*  <Button*/}
+          {/*      start={<LogOut size={16}/>}*/}
+          {/*      label="Switch backend"*/}
+          {/*      onClick={openAPIConfigModal}*/}
+          {/*  />*/}
+          {/*</div>*/}
         </div>
       </div>
   );
