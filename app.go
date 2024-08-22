@@ -52,10 +52,6 @@ func (a *App) initClash() {
 	// 初始化配置文件
 	a.initConfig(currentDir)
 
-	if err := config.InitMMDB(); err != nil {
-		log.Errorln("Initial mmdb error: %s", err.Error())
-	}
-
 	cfg, err := executor.Parse()
 	if err != nil {
 		log.Fatalln("Parse config error: %s", err.Error())
@@ -74,6 +70,10 @@ func (a *App) initClash() {
 	}
 
 	executor.ApplyConfig(cfg, true)
+
+	if err := config.InitMMDB(); err != nil {
+		log.Errorln("Initial mmdb error: %s", err.Error())
+	}
 }
 
 func (a *App) initConfig(currentDir string) {
