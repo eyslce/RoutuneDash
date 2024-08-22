@@ -14,12 +14,10 @@ jobs:
         ]
     runs-on: ${{ matrix.build.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - uses: pnpm/action-setup@0609f0983b7a228f052f81ef4c3d6510cae254ad
-        with:
-          version: 6.10.0
+      - uses: pnpm/action-setup@v4
       - uses: dAppServer/wails-build-action@v2.2
         with:
           build-name: ${{ matrix.build.name }}
