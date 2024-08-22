@@ -44,7 +44,7 @@ func main() {
 }
 
 func getIco() []byte {
-	bytes, err := assets.ReadFile("frontend/dist/yacd.ico")
+	bytes, err := assets.ReadFile("frontend/dist/app.png")
 	if err != nil {
 		println("Error:", err.Error())
 		return nil
