@@ -8,8 +8,11 @@ import (
 	"github.com/eyslce/clash/config"
 	"github.com/eyslce/clash/hub/executor"
 	"github.com/eyslce/clash/hub/route"
+	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/eyslce/clash/constant"
@@ -166,4 +169,11 @@ func (a *App) getAppIcon() []byte {
 		return nil
 	}
 	return bytes
+}
+
+func (a *App) onSecondInstanceLaunch(data options.SecondInstanceData) {
+	log.Infoln("user opened second instance", strings.Join(data.Args, ","))
+	log.Infoln("user opened second from", data.WorkingDirectory)
+	runtime.WindowUnminimise(a.ctx)
+	runtime.Show(a.ctx)
 }

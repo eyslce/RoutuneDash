@@ -35,6 +35,10 @@ func main() {
 		Linux: &linux.Options{
 			Icon: app.getAppIcon(),
 		},
+		SingleInstanceLock: &options.SingleInstanceLock{
+			UniqueId:               "clashy-app",
+			OnSecondInstanceLaunch: app.onSecondInstanceLaunch,
+		},
 	})
 
 	if err != nil {
