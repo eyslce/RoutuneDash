@@ -1,4 +1,4 @@
-# README
+# Clash Client
 
 ## About
 

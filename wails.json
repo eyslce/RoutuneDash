@@ -7,7 +7,7 @@
   "frontend:dev:watcher": "pnpm start",
   "frontend:dev:serverUrl": "auto",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "eyslce",
+    "email": "eyslce@gmail.com"
   }
 }

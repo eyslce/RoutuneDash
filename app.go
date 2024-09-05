@@ -172,8 +172,8 @@ func (a *App) getAppIcon() []byte {
 }
 
 func (a *App) onSecondInstanceLaunch(data options.SecondInstanceData) {
-	log.Infoln("user opened second instance", strings.Join(data.Args, ","))
-	log.Infoln("user opened second from", data.WorkingDirectory)
+	log.Infoln("user opened second instance:%s", strings.Join(data.Args, ","))
+	log.Infoln("user opened second from:%s", data.WorkingDirectory)
 	runtime.WindowUnminimise(a.ctx)
 	runtime.Show(a.ctx)
 }
