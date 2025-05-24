@@ -1,5 +1,5 @@
-# Clash Client
+# RoutuneDash
 
 ## About
 
-A Clash client with a simple UI built with Wails.
+A Routune client with a simple UI built with Wails.

@@ -1,11 +1,12 @@
 package logger
 
 import (
-	clashlog "github.com/eyslce/clash/log"
-	"github.com/eyslce/lumberjack"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/eyslce/lumberjack"
+	routunelog "github.com/eyslce/routune/log"
 )
 
 var (
@@ -13,7 +14,7 @@ var (
 )
 
 func InitLogger(workDir string) {
-	logFile := filepath.Join(workDir, "clashy.log")
+	logFile := filepath.Join(workDir, "routune.log")
 
 	logger = log.New(os.Stdout, "", log.Lshortfile|log.Ldate|log.Ltime)
 
@@ -26,22 +27,22 @@ func InitLogger(workDir string) {
 		DailyRolling: true,
 	})
 
-	go subscribeClashLog()
+	go subscribeRoutuneLog()
 }
 
-func subscribeClashLog() {
-	for msg := range clashlog.Subscribe() {
-		event := msg.(clashlog.Event)
+func subscribeRoutuneLog() {
+	for msg := range routunelog.Subscribe() {
+		event := msg.(routunelog.Event)
 		switch event.LogLevel {
-		case clashlog.INFO:
+		case routunelog.INFO:
 			logger.Println("INFO: ", event.Payload)
-		case clashlog.WARNING:
+		case routunelog.WARNING:
 			logger.Println("WARNING: ", event.Payload)
-		case clashlog.ERROR:
+		case routunelog.ERROR:
 			logger.Println("ERROR: ", event.Payload)
-		case clashlog.DEBUG:
+		case routunelog.DEBUG:
 			logger.Println("DEBUG: ", event.Payload)
-		case clashlog.SILENT:
+		case routunelog.SILENT:
 			logger.Println("SILENT: ", event.Payload)
 		default:
 			logger.Println(event.Payload)

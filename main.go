@@ -2,7 +2,8 @@ package main
 
 import (
 	"embed"
-	_ "github.com/eyslce/clash/log"
+
+	_ "github.com/eyslce/routune/log"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
@@ -19,7 +20,7 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "clashy",
+		Title:  "RoutuneDash",
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{
@@ -36,7 +37,7 @@ func main() {
 			Icon: app.getAppIcon(),
 		},
 		SingleInstanceLock: &options.SingleInstanceLock{
-			UniqueId:               "clashy-app",
+			UniqueId:               "RoutuneDash-app",
 			OnSecondInstanceLaunch: app.onSecondInstanceLaunch,
 		},
 	})

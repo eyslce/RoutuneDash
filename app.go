@@ -1,22 +1,23 @@
 package main
 
 import (
-	"clashy/internal/client"
-	"clashy/internal/logger"
 	"context"
 	"embed"
-	"github.com/eyslce/clash/config"
-	"github.com/eyslce/clash/hub/executor"
-	"github.com/eyslce/clash/hub/route"
-	"github.com/wailsapp/wails/v2/pkg/options"
-	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
 
-	"github.com/eyslce/clash/constant"
-	"github.com/eyslce/clash/log"
+	"github.com/eyslce/routune/config"
+	"github.com/eyslce/routune/hub/executor"
+	"github.com/eyslce/routune/hub/route"
+	"github.com/eyslce/routunedash/internal/client"
+	"github.com/eyslce/routunedash/internal/logger"
+	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
+
+	"github.com/eyslce/routune/constant"
+	"github.com/eyslce/routune/log"
 )
 
 const (
@@ -43,11 +44,11 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	a.initClash()
+	a.initroutune()
 }
 
-// initClash initializes the clash runtime
-func (a *App) initClash() {
+// initroutune initializes the routune runtime
+func (a *App) initroutune() {
 	currentDir, _ := os.Getwd()
 	constant.SetHomeDir(currentDir)
 	// 初始化日志
