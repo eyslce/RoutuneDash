@@ -37,9 +37,9 @@ function AboutImpl(props: Props) {
     <>
       <ContentHeader title="About" />
       {version && version.version ? (
-        <Version name="Clash" version={version.version} link="https://github.com/Dreamacro/clash" />
+        <Version name="routune" version={version.version} link="https://github.com/eyslce/routune" />
       ) : null}
-      <Version name="Yacd" version={__VERSION__} link="https://github.com/haishanh/yacd" />
+      <Version name="RoutuneDash" version={__VERSION__} link="https://github.com/eyslce/routunedash" />
     </>
   );
 }
