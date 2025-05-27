@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { fetchConfigs } from 'src/api/configs';
 import { BackendList } from 'src/components/BackendList';
-import { addClashAPIConfig, getClashAPIConfig } from 'src/store/app';
+import { addRoutuneAPIConfig, getRoutuneAPIConfig, getRoutuneAPIConfigs } from 'src/store/app';
 import { State } from 'src/store/types';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 import s0 from './APIConfig.module.scss';
 import Button from './Button';
@@ -18,7 +18,7 @@ const Ok = 0;
 const noop = () => {};
 
 const mapState = (s: State) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 function APIConfig({ dispatch }) {
@@ -56,7 +56,7 @@ function APIConfig({ dispatch }) {
       if (ret[0] !== Ok) {
         setErrMsg(ret[1]);
       } else {
-        dispatch(addClashAPIConfig({ baseURL, secret, metaLabel }));
+        dispatch(addRoutuneAPIConfig({ baseURL, secret, metaLabel }));
       }
     });
   }, [baseURL, secret, metaLabel, dispatch]);
@@ -77,10 +77,9 @@ function APIConfig({ dispatch }) {
   );
 
   const detectApiServer = async () => {
-    // if there is already a clash API server at `/`, just use it as default value
     const res = await fetch('/');
     res.json().then((data) => {
-      if (data['hello'] === 'clash') {
+      if (data['hello'] === 'routune') {
         setBaseURL(window.location.origin);
       }
     }, noop);
@@ -141,7 +140,7 @@ function APIConfig({ dispatch }) {
 
 export default connect(mapState)(APIConfig);
 
-async function verify(apiConfig: ClashAPIConfig): Promise<[number, string?]> {
+async function verify(apiConfig: RoutuneAPIConfig): Promise<[number, string?]> {
   try {
     new URL(apiConfig.baseURL);
   } catch (e) {

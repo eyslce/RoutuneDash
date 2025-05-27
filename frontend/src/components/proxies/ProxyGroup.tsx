@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { useState2 } from '$src/hooks/basic';
 import { DelayMapping, DispatchFn, ProxiesMapping, State } from '$src/store/types';
-import { ClashAPIConfig } from '$src/types';
+import { RoutuneAPIConfig } from '$src/types';
 
 import { getCollapsibleIsOpen, getHideUnavailableProxies, getProxySortBy } from '../../store/app';
 import { getProxies, switchProxy } from '../../store/proxies';
@@ -27,7 +27,7 @@ type ProxyGroupImplProps = {
   type: string;
   now: string;
   isOpen: boolean;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
   dispatch: DispatchFn;
 };
 

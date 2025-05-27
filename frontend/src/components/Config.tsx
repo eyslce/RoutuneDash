@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as logsApi from 'src/api/logs';
 import Select from 'src/components/shared/Select';
-import { ClashGeneralConfig, DispatchFn, State } from 'src/store/types';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneGeneralConfig, DispatchFn, State } from 'src/store/types';
+import { RoutuneAPIConfig } from 'src/types';
 
-import { getClashAPIConfig, getLatencyTestUrl, getSelectedChartStyleIndex } from '../store/app';
+import { getRoutuneAPIConfig, getLatencyTestUrl, getSelectedChartStyleIndex } from '../store/app';
 import { fetchConfigs, getConfigs, updateConfigs } from '../store/configs';
 import { openModal } from '../store/modals';
 import Button from './Button';
@@ -52,13 +52,13 @@ const modeOptions = [
 
 const mapState = (s: State) => ({
   configs: getConfigs(s),
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 const mapState2 = (s: State) => ({
   selectedChartStyleIndex: getSelectedChartStyleIndex(s),
   latencyTestUrl: getLatencyTestUrl(s),
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 const Config = connect(mapState2)(ConfigImpl);
@@ -73,10 +73,10 @@ function ConfigContainer({ dispatch, configs, apiConfig }) {
 
 type ConfigImplProps = {
   dispatch: DispatchFn;
-  configs: ClashGeneralConfig;
+  configs: RoutuneGeneralConfig;
   selectedChartStyleIndex: number;
   latencyTestUrl: string;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
   callbackMsg: string;
 };
 
@@ -103,7 +103,7 @@ function ConfigImpl({
   }, [dispatch]);
 
   const setConfigState = useCallback(
-    (name: keyof ClashGeneralConfig, val: ClashGeneralConfig[keyof ClashGeneralConfig]) => {
+    (name: keyof RoutuneGeneralConfig, val: RoutuneGeneralConfig[keyof RoutuneGeneralConfig]) => {
       setConfigStateInternal({ ...configState, [name]: val });
     },
     [configState]

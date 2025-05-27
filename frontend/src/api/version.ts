@@ -1,5 +1,5 @@
 import { getURLAndInit } from 'src/misc/request-helper';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 type VersionData = {
   version?: string;
@@ -8,7 +8,7 @@ type VersionData = {
 
 export async function fetchVersion(
   endpoint: string,
-  apiConfig: ClashAPIConfig
+  apiConfig: RoutuneAPIConfig
 ): Promise<VersionData> {
   let json = {};
   try {

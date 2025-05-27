@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useUpdateAllRuleProviderItems } from 'src/components/rules/rules.hooks';
 import { Fab, position as fabPosition } from 'src/components/shared/Fab';
 import { RotateIcon } from 'src/components/shared/RotateIcon';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 type RulesPageFabProps = {
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
 };
 
 export function RulesPageFab({ apiConfig }: RulesPageFabProps) {

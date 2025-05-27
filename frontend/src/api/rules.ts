@@ -1,6 +1,6 @@
 import invariant from 'invariant';
 import { getURLAndInit } from 'src/misc/request-helper';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 // const endpoint = '/rules';
 
@@ -22,7 +22,7 @@ function normalizeAPIResponse(json: { rules: Array<RuleAPIItem> }): Array<RuleIt
   return json.rules.map((r: RuleAPIItem, i: number) => ({ ...r, id: i }));
 }
 
-export async function fetchRules(endpoint: string, apiConfig: ClashAPIConfig) {
+export async function fetchRules(endpoint: string, apiConfig: RoutuneAPIConfig) {
   let json = { rules: [] };
   try {
     const { url, init } = getURLAndInit(apiConfig);

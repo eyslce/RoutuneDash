@@ -8,7 +8,7 @@ import { useUpdateProviderItem } from 'src/components/proxies/proxies.hooks';
 import { connect, useStoreActions } from 'src/components/StateProvider';
 import { framerMotionResouce } from 'src/misc/motion';
 import {
-  getClashAPIConfig,
+  getRoutuneAPIConfig,
   getCollapsibleIsOpen,
   getHideUnavailableProxies,
   getProxySortBy,
@@ -134,7 +134,7 @@ const mapState = (s: State, { proxies, name }) => {
   const hideUnavailableProxies = getHideUnavailableProxies(s);
   const delay = getDelay(s);
   const collapsibleIsOpen = getCollapsibleIsOpen(s);
-  const apiConfig = getClashAPIConfig(s);
+  const apiConfig = getRoutuneAPIConfig(s);
 
   const proxySortBy = getProxySortBy(s);
 

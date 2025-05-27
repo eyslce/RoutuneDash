@@ -1,10 +1,10 @@
 import { getURLAndInit } from 'src/misc/request-helper';
-import { ClashGeneralConfig } from 'src/store/types';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneGeneralConfig } from 'src/store/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 const endpoint = '/configs';
 
-export async function fetchConfigs(apiConfig: ClashAPIConfig) {
+export async function fetchConfigs(apiConfig: RoutuneAPIConfig) {
   const { url, init } = getURLAndInit(apiConfig);
   return await fetch(url + endpoint, init);
 }
@@ -13,16 +13,15 @@ export async function fetchConfigs(apiConfig: ClashAPIConfig) {
 // req body
 // { Path: string }
 
-type ClashConfigPartial = Partial<ClashGeneralConfig>;
-function configsPatchWorkaround(o: ClashConfigPartial) {
-  // backward compatibility for older clash  using `socket-port`
+type RoutuneConfigPartial = Partial<RoutuneGeneralConfig>;
+function configsPatchWorkaround(o: RoutuneConfigPartial) {
   if ('socks-port' in o) {
     o['socket-port'] = o['socks-port'];
   }
   return o;
 }
 
-export async function updateConfigs(apiConfig: ClashAPIConfig, o: ClashConfigPartial) {
+export async function updateConfigs(apiConfig: RoutuneAPIConfig, o: RoutuneConfigPartial) {
   const { url, init } = getURLAndInit(apiConfig);
   const body = JSON.stringify(configsPatchWorkaround(o));
   return await fetch(url + endpoint, { ...init, body, method: 'PATCH' });

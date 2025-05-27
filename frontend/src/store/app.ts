@@ -1,18 +1,18 @@
 import { DispatchFn, GetStateFn, State, StateApp } from 'src/store/types';
 
-import { ClashAPIConfig } from '$src/types';
+import { RoutuneAPIConfig } from '$src/types';
 
 import { loadState, saveState } from '../misc/storage';
 import { debounce, trimTrailingSlash } from '../misc/utils';
 import { fetchConfigs } from './configs';
 import { closeModal } from './modals';
 
-export const getClashAPIConfig = (s: State) => {
-  const idx = s.app.selectedClashAPIConfigIndex;
-  return s.app.clashAPIConfigs[idx];
+export const getRoutuneAPIConfig = (s: State) => {
+  const idx = s.app.selectedRoutuneAPIConfigIndex;
+  return s.app.routuneAPIConfigs[idx];
 };
-export const getSelectedClashAPIConfigIndex = (s: State) => s.app.selectedClashAPIConfigIndex;
-export const getClashAPIConfigs = (s: State) => s.app.clashAPIConfigs;
+export const getSelectedRoutuneAPIConfigIndex = (s: State) => s.app.selectedRoutuneAPIConfigIndex;
+export const getRoutuneAPIConfigs = (s: State) => s.app.routuneAPIConfigs;
 export const getTheme = (s: State) => s.app.theme;
 export const getSelectedChartStyleIndex = (s: State) => s.app.selectedChartStyleIndex;
 export const getLatencyTestUrl = (s: State) => s.app.latencyTestUrl;
@@ -24,50 +24,50 @@ export const getLogStreamingPaused = (s: State) => s.app.logStreamingPaused;
 
 const saveStateDebounced = debounce(saveState, 600);
 
-function findClashAPIConfigIndex(
+function findRoutuneAPIConfigIndex(
   getState: GetStateFn,
-  { baseURL, secret, metaLabel }: ClashAPIConfig
+  { baseURL, secret, metaLabel }: RoutuneAPIConfig
 ) {
-  const arr = getClashAPIConfigs(getState());
+  const arr = getRoutuneAPIConfigs(getState());
   for (let i = 0; i < arr.length; i++) {
     const x = arr[i];
     if (x.baseURL === baseURL && x.secret === secret && x.metaLabel === metaLabel) return i;
   }
 }
 
-export function addClashAPIConfig(conf: ClashAPIConfig) {
+export function addRoutuneAPIConfig(conf: RoutuneAPIConfig) {
   return async (dispatch: DispatchFn, getState: GetStateFn) => {
-    const idx = findClashAPIConfigIndex(getState, conf);
+    const idx = findRoutuneAPIConfigIndex(getState, conf);
     // already exists
     if (idx) return;
 
-    const clashAPIConfig = { ...conf, addedAt: Date.now() };
-    dispatch('addClashAPIConfig', (s) => {
-      s.app.clashAPIConfigs.push(clashAPIConfig);
+    const RoutuneAPIConfig = { ...conf, addedAt: Date.now() };
+    dispatch('addRoutuneAPIConfig', (s) => {
+      s.app.routuneAPIConfigs.push(RoutuneAPIConfig);
     });
     // side effect
     saveState(getState().app);
   };
 }
 
-export function removeClashAPIConfig(conf: ClashAPIConfig) {
+export function removeRoutuneAPIConfig(conf: RoutuneAPIConfig) {
   return async (dispatch: DispatchFn, getState: GetStateFn) => {
-    const idx = findClashAPIConfigIndex(getState, conf);
-    dispatch('removeClashAPIConfig', (s) => {
-      s.app.clashAPIConfigs.splice(idx, 1);
+    const idx = findRoutuneAPIConfigIndex(getState, conf);
+    dispatch('removeRoutuneAPIConfig', (s) => {
+      s.app.routuneAPIConfigs.splice(idx, 1);
     });
     // side effect
     saveState(getState().app);
   };
 }
 
-export function selectClashAPIConfig(conf: ClashAPIConfig) {
+export function selectRoutuneAPIConfig(conf: RoutuneAPIConfig) {
   return async (dispatch: DispatchFn, getState: GetStateFn) => {
-    const idx = findClashAPIConfigIndex(getState, conf);
-    const curr = getSelectedClashAPIConfigIndex(getState());
+    const idx = findRoutuneAPIConfigIndex(getState, conf);
+    const curr = getSelectedRoutuneAPIConfigIndex(getState());
     if (curr !== idx) {
-      dispatch('selectClashAPIConfig', (s) => {
-        s.app.selectedClashAPIConfigIndex = idx;
+      dispatch('selectRoutuneAPIConfig', (s) => {
+        s.app.selectedRoutuneAPIConfigIndex = idx;
       });
     }
     // side effect
@@ -84,16 +84,16 @@ export function selectClashAPIConfig(conf: ClashAPIConfig) {
 }
 
 // unused
-export function updateClashAPIConfig(conf: ClashAPIConfig) {
+export function updateRoutuneAPIConfig(conf: RoutuneAPIConfig) {
   return async (dispatch: DispatchFn, getState: GetStateFn) => {
-    const clashAPIConfig = conf;
-    dispatch('appUpdateClashAPIConfig', (s) => {
-      s.app.clashAPIConfigs[0] = clashAPIConfig;
+    const RoutuneAPIConfig = conf;
+    dispatch('appUpdateRoutuneAPIConfig', (s) => {
+      s.app.routuneAPIConfigs[0] = RoutuneAPIConfig;
     });
     // side effect
     saveState(getState().app);
     dispatch(closeModal('apiConfig'));
-    dispatch(fetchConfigs(clashAPIConfig));
+    dispatch(fetchConfigs(RoutuneAPIConfig));
   };
 }
 
@@ -194,15 +194,15 @@ export function updateCollapsibleIsOpen(prefix: string, name: string, v: boolean
   };
 }
 
-const defaultClashAPIConfig = {
+const defaultRoutuneAPIConfig = {
   baseURL: document.getElementById('app')?.getAttribute('data-base-url') ?? 'http://127.0.0.1:9090',
   secret: '',
   addedAt: 0,
 };
 // type Theme = 'light' | 'dark';
 const defaultState: StateApp = {
-  selectedClashAPIConfigIndex: 0,
-  clashAPIConfigs: [defaultClashAPIConfig],
+  selectedRoutuneAPIConfigIndex: 0,
+  routuneAPIConfigs: [defaultRoutuneAPIConfig],
 
   latencyTestUrl: 'http://www.gstatic.com/generate_204',
   selectedChartStyleIndex: 0,
@@ -234,7 +234,7 @@ export function initialState() {
   s = { ...defaultState, ...s };
   const query = parseConfigQueryString();
 
-  const conf = s.clashAPIConfigs[s.selectedClashAPIConfigIndex];
+  const conf = s.routuneAPIConfigs[s.selectedRoutuneAPIConfigIndex];
   if (conf) {
     const url = new URL(conf.baseURL);
     if (query.hostname) {

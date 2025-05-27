@@ -1,5 +1,5 @@
-import { ClashGeneralConfig, DispatchFn, GetStateFn, State, StateConfigs } from 'src/store/types';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneGeneralConfig, DispatchFn, GetStateFn, State, StateConfigs } from 'src/store/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 import * as configsAPI from '../api/configs';
 import * as trafficAPI from '../api/traffic';
@@ -9,7 +9,7 @@ export const getConfigs = (s: State) => s.configs.configs;
 export const getHaveFetched = (s: State) => s.configs.haveFetchedConfig;
 export const getLogLevel = (s: State) => s.configs.configs['log-level'];
 
-export function fetchConfigs(apiConfig: ClashAPIConfig) {
+export function fetchConfigs(apiConfig: RoutuneAPIConfig) {
   return async (dispatch: DispatchFn, getState: GetStateFn) => {
     let res: Response;
     try {
@@ -54,8 +54,8 @@ function markHaveFetchedConfig() {
 }
 
 export function updateConfigs(
-  apiConfig: ClashAPIConfig,
-  partialConfg: Partial<ClashGeneralConfig>
+  apiConfig: RoutuneAPIConfig,
+  partialConfg: Partial<RoutuneGeneralConfig>
 ) {
   return async (dispatch: DispatchFn) => {
     configsAPI

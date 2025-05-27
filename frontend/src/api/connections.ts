@@ -1,4 +1,4 @@
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 import { buildWebSocketURL, getURLAndInit } from '../misc/request-helper';
 
@@ -7,7 +7,7 @@ const endpoint = '/connections';
 const fetched = false;
 const subscribers = [];
 
-// see also https://github.com/Dreamacro/clash/blob/dev/constant/metadata.go#L41
+
 type UUID = string;
 type ConnNetwork = 'tcp' | 'udp';
 type ConnType = 'HTTP' | 'HTTP Connect' | 'Socks5' | 'Redir' | 'Unknown';
@@ -52,7 +52,7 @@ function appendData(s: string) {
 type UnsubscribeFn = () => void;
 
 let wsState: number;
-export function fetchData(apiConfig: ClashAPIConfig, listener: unknown): UnsubscribeFn | void {
+export function fetchData(apiConfig: RoutuneAPIConfig, listener: unknown): UnsubscribeFn | void {
   if (fetched || wsState === 1) {
     if (listener) return subscribe(listener);
   }
@@ -72,17 +72,17 @@ function subscribe(listener: unknown): UnsubscribeFn {
   };
 }
 
-export async function closeAllConnections(apiConfig: ClashAPIConfig) {
+export async function closeAllConnections(apiConfig: RoutuneAPIConfig) {
   const { url, init } = getURLAndInit(apiConfig);
   return await fetch(url + endpoint, { ...init, method: 'DELETE' });
 }
 
-export async function fetchConns(apiConfig: ClashAPIConfig) {
+export async function fetchConns(apiConfig: RoutuneAPIConfig) {
   const { url, init } = getURLAndInit(apiConfig);
   return await fetch(url + endpoint, { ...init });
 }
 
-export async function closeConnById(apiConfig: ClashAPIConfig, id: string) {
+export async function closeConnById(apiConfig: RoutuneAPIConfig, id: string) {
   const { url: baseURL, init } = getURLAndInit(apiConfig);
   const url = `${baseURL}${endpoint}/${id}`;
   return await fetch(url, { ...init, method: 'DELETE' });

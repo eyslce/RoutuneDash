@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { updateProviderByName, updateProviders } from 'src/store/proxies';
 import { DispatchFn } from 'src/store/types';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 const { useCallback, useState } = React;
 
@@ -11,7 +11,7 @@ export function useUpdateProviderItem({
   name,
 }: {
   dispatch: DispatchFn;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
   name: string;
 }) {
   return useCallback(
@@ -26,7 +26,7 @@ export function useUpdateProviderItems({
   names,
 }: {
   dispatch: DispatchFn;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
   names: string[];
 }): [() => unknown, boolean] {
   const [isLoading, setIsLoading] = useState(false);

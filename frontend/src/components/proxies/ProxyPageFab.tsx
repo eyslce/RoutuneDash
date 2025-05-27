@@ -6,7 +6,7 @@ import { Action, Fab, IsFetching, position as fabPosition } from 'src/components
 import { RotateIcon } from 'src/components/shared/RotateIcon';
 import { requestDelayAll } from 'src/store/proxies';
 import { DispatchFn, FormattedProxyProvider } from 'src/store/types';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 const { useState, useCallback } = React;
 
@@ -25,7 +25,7 @@ function useTestLatencyAction({
   apiConfig,
 }: {
   dispatch: DispatchFn;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
 }): [() => unknown, boolean] {
   const [isTestingLatency, setIsTestingLatency] = useState(false);
   const requestDelayAllFn = useCallback(() => {
@@ -46,7 +46,7 @@ export function ProxyPageFab({
   proxyProviders,
 }: {
   dispatch: DispatchFn;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
   proxyProviders: FormattedProxyProvider[];
 }) {
   const { t } = useTranslation();

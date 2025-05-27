@@ -4,12 +4,12 @@ import { GitHub } from 'react-feather';
 import { fetchVersion } from 'src/api/version';
 import ContentHeader from 'src/components/ContentHeader';
 import { connect } from 'src/components/StateProvider';
-import { getClashAPIConfig } from 'src/store/app';
-import { ClashAPIConfig } from 'src/types';
+import { getRoutuneAPIConfig } from 'src/store/app';
+import { RoutuneAPIConfig } from 'src/types';
 
 import s from './About.module.scss';
 
-type Props = { apiConfig: ClashAPIConfig };
+type Props = { apiConfig: RoutuneAPIConfig };
 
 function Version({ name, link, version }: { name: string; link: string; version: string }) {
   return (
@@ -45,7 +45,7 @@ function AboutImpl(props: Props) {
 }
 
 const mapState = (s) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 export const About = connect(mapState)(AboutImpl);

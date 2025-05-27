@@ -8,13 +8,13 @@ import {
 } from 'src/api/rule-provider';
 import { fetchRules } from 'src/api/rules';
 import { ruleFilterText } from 'src/store/rules';
-import type { ClashAPIConfig } from 'src/types';
+import type { RoutuneAPIConfig } from 'src/types';
 
 const { useCallback } = React;
 
 export function useUpdateRuleProviderItem(
   name: string,
-  apiConfig: ClashAPIConfig
+  apiConfig: RoutuneAPIConfig
 ): [(ev: React.MouseEvent<HTMLButtonElement>) => unknown, boolean] {
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation(refreshRuleProviderByName, {
@@ -30,7 +30,7 @@ export function useUpdateRuleProviderItem(
 }
 
 export function useUpdateAllRuleProviderItems(
-  apiConfig: ClashAPIConfig
+  apiConfig: RoutuneAPIConfig
 ): [(ev: React.MouseEvent<HTMLButtonElement>) => unknown, boolean] {
   const queryClient = useQueryClient();
   const { data: provider } = useRuleProviderQuery(apiConfig);
@@ -54,13 +54,13 @@ export function useInvalidateQueries() {
   }, [queryClient]);
 }
 
-export function useRuleProviderQuery(apiConfig: ClashAPIConfig) {
+export function useRuleProviderQuery(apiConfig: RoutuneAPIConfig) {
   return useQuery(['/providers/rules', apiConfig], () =>
     fetchRuleProviders('/providers/rules', apiConfig)
   );
 }
 
-export function useRuleAndProvider(apiConfig: ClashAPIConfig) {
+export function useRuleAndProvider(apiConfig: RoutuneAPIConfig) {
   const { data: rules, isFetching } = useQuery(['/rules', apiConfig], () =>
     fetchRules('/rules', apiConfig)
   );

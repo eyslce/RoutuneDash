@@ -2,45 +2,45 @@ import cx from 'clsx';
 import * as React from 'react';
 import { Eye, EyeOff, X as Close } from 'react-feather';
 import { useToggle } from 'src/hooks/basic';
-import { getClashAPIConfigs, getSelectedClashAPIConfigIndex } from 'src/store/app';
-import { ClashAPIConfig } from 'src/types';
+import { getRoutuneAPIConfigs, getSelectedRoutuneAPIConfigIndex } from 'src/store/app';
+import { RoutuneAPIConfig } from 'src/types';
 
 import { State } from '$src/store/types';
 
 import s from './BackendList.module.scss';
 import { connect, useStoreActions } from './StateProvider';
 
-type Config = ClashAPIConfig & { addedAt: number };
+type Config = RoutuneAPIConfig & { addedAt: number };
 
 const mapState = (s: State) => ({
-  apiConfigs: getClashAPIConfigs(s),
-  selectedClashAPIConfigIndex: getSelectedClashAPIConfigIndex(s),
+  apiConfigs: getRoutuneAPIConfigs(s),
+  selectedRoutuneAPIConfigIndex: getSelectedRoutuneAPIConfigIndex(s),
 });
 
 export const BackendList = connect(mapState)(BackendListImpl);
 
 function BackendListImpl({
   apiConfigs,
-  selectedClashAPIConfigIndex,
+  selectedRoutuneAPIConfigIndex,
 }: {
   apiConfigs: Config[];
-  selectedClashAPIConfigIndex: number;
+  selectedRoutuneAPIConfigIndex: number;
 }) {
   const {
-    app: { removeClashAPIConfig, selectClashAPIConfig },
+    app: { removeRoutuneAPIConfig, selectRoutuneAPIConfig },
   } = useStoreActions();
 
   const onRemove = React.useCallback(
-    (conf: ClashAPIConfig) => {
-      removeClashAPIConfig(conf);
+    (conf: RoutuneAPIConfig) => {
+        removeRoutuneAPIConfig(conf);
     },
-    [removeClashAPIConfig]
+    [removeRoutuneAPIConfig]
   );
   const onSelect = React.useCallback(
-    (conf: ClashAPIConfig) => {
-      selectClashAPIConfig(conf);
+    (conf: RoutuneAPIConfig) => {
+      selectRoutuneAPIConfig(conf);
     },
-    [selectClashAPIConfig]
+    [selectRoutuneAPIConfig]
   );
 
   return (
@@ -49,11 +49,11 @@ function BackendListImpl({
         {apiConfigs.map((item, idx) => {
           return (
             <li
-              className={cx(s.li, { [s.isSelected]: idx === selectedClashAPIConfigIndex })}
+              className={cx(s.li, { [s.isSelected]: idx === selectedRoutuneAPIConfigIndex })}
               key={item.baseURL + item.secret + item.metaLabel}
             >
               <Item
-                disableRemove={idx === selectedClashAPIConfigIndex}
+                disableRemove={idx === selectedRoutuneAPIConfigIndex}
                 conf={item}
                 onRemove={onRemove}
                 onSelect={onSelect}
@@ -72,10 +72,10 @@ function Item({
   onRemove,
   onSelect,
 }: {
-  conf: ClashAPIConfig;
+  conf: RoutuneAPIConfig;
   disableRemove: boolean;
-  onRemove: (x: ClashAPIConfig) => void;
-  onSelect: (x: ClashAPIConfig) => void;
+  onRemove: (x: RoutuneAPIConfig) => void;
+  onSelect: (x: RoutuneAPIConfig) => void;
 }) {
   const [show, toggle] = useToggle();
   const Icon = show ? EyeOff : Eye;

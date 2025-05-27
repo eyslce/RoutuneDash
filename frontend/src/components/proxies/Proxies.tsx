@@ -12,7 +12,7 @@ import BaseModal from 'src/components/shared/BaseModal';
 import { TextFilter } from 'src/components/shared/TextFitler';
 import { connect, useStoreActions } from 'src/components/StateProvider';
 import Equalizer from 'src/components/svg/Equalizer';
-import { getClashAPIConfig } from 'src/store/app';
+import { getRoutuneAPIConfig } from 'src/store/app';
 import { proxyFilterText } from 'src/store/proxies';
 import {
   fetchProxies,
@@ -117,7 +117,7 @@ function Proxies({
 }
 
 const mapState = (s: State) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
   groupNames: getProxyGroupNames(s),
   proxyProviders: getProxyProviders(s),
   delay: getDelay(s),

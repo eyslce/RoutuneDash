@@ -1,5 +1,5 @@
 ---
-name: clashy build
+name: RoutuneDash build
 
 on:
   push:
@@ -17,13 +17,13 @@ jobs:
       fail-fast: false
       matrix:
         build:
-          - name: 'clashy-linux'
+          - name: 'RoutuneDash-linux'
             platform: 'linux/amd64'
             os: 'ubuntu-latest'
-          - name: 'clashy'
+          - name: 'RoutuneDash'
             platform: 'windows/amd64'
             os: 'windows-latest'
-          - name: 'clashy'
+          - name: 'RoutuneDash'
             platform: 'darwin/universal'
             os: 'macos-latest'
     runs-on: ${{ matrix.build.os }}

@@ -1,5 +1,5 @@
 import { trimTrailingSlash } from 'src/misc/utils';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 import { LogsAPIConfig } from 'src/types';
 
 const headersCommon = { 'Content-Type': 'application/json' };
@@ -18,7 +18,7 @@ function buildWebSocketURLBase(baseURL: string, params: URLSearchParams, endpoin
   return `${trimTrailingSlash(url.href)}${endpoint}${qs}`;
 }
 
-export function getURLAndInit({ baseURL, secret }: ClashAPIConfig) {
+export function getURLAndInit({ baseURL, secret }: RoutuneAPIConfig) {
   const headers = genCommonHeaders({ secret });
   return {
     url: baseURL,
@@ -26,7 +26,7 @@ export function getURLAndInit({ baseURL, secret }: ClashAPIConfig) {
   };
 }
 
-export function buildWebSocketURL(apiConfig: ClashAPIConfig, endpoint: string) {
+export function buildWebSocketURL(apiConfig: RoutuneAPIConfig, endpoint: string) {
   const { baseURL, secret } = apiConfig;
   const params = new URLSearchParams({
     token: secret,

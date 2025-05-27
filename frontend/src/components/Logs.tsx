@@ -9,7 +9,7 @@ import LogSearch from 'src/components/LogSearch';
 import { connect, useStoreActions } from 'src/components/StateProvider';
 import SvgYacd from 'src/components/SvgYacd';
 import useRemainingViewPortHeight from 'src/hooks/useRemainingViewPortHeight';
-import { getClashAPIConfig, getLogStreamingPaused } from 'src/store/app';
+import { getRoutuneAPIConfig, getLogStreamingPaused } from 'src/store/app';
 import { getLogLevel } from 'src/store/configs';
 import { appendLog, getLogsForDisplay } from 'src/store/logs';
 import { Log, State } from 'src/store/types';
@@ -117,7 +117,7 @@ function Logs({ dispatch, logLevel, apiConfig, logs, logStreamingPaused }) {
 const mapState = (s: State) => ({
   logs: getLogsForDisplay(s),
   logLevel: getLogLevel(s),
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
   logStreamingPaused: getLogStreamingPaused(s),
 });
 

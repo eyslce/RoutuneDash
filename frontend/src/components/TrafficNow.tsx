@@ -2,19 +2,19 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { State } from '$src/store/types';
-import { ClashAPIConfig } from '$src/types';
+import { RoutuneAPIConfig } from '$src/types';
 
 import * as connAPI from '../api/connections';
 import { fetchData } from '../api/traffic';
 import prettyBytes from '../misc/pretty-bytes';
-import { getClashAPIConfig } from '../store/app';
+import { getRoutuneAPIConfig } from '../store/app';
 import { connect } from './StateProvider';
 import s0 from './TrafficNow.module.scss';
 
 const { useState, useEffect, useCallback } = React;
 
 const mapState = (s: State) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 export default connect(mapState)(TrafficNow);
 
@@ -48,7 +48,7 @@ function TrafficNow({ apiConfig }) {
   );
 }
 
-function useSpeed(apiConfig: ClashAPIConfig) {
+function useSpeed(apiConfig: RoutuneAPIConfig) {
   const [speed, setSpeed] = useState({ upStr: '0 B/s', downStr: '0 B/s' });
   useEffect(() => {
     return fetchData(apiConfig).subscribe((o) =>
@@ -61,7 +61,7 @@ function useSpeed(apiConfig: ClashAPIConfig) {
   return speed;
 }
 
-function useConnection(apiConfig: ClashAPIConfig) {
+function useConnection(apiConfig: RoutuneAPIConfig) {
   const [state, setState] = useState({
     upTotal: '0 B',
     dlTotal: '0 B',

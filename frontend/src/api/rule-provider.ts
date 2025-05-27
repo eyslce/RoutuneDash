@@ -1,5 +1,5 @@
 import { getURLAndInit } from 'src/misc/request-helper';
-import { ClashAPIConfig } from 'src/types';
+import { RoutuneAPIConfig } from 'src/types';
 
 export type RuleProvider = RuleProviderAPIItem & { idx: number };
 
@@ -31,7 +31,7 @@ function normalizeAPIResponse(data: RuleProviderAPIData) {
   return { byName, names };
 }
 
-export async function fetchRuleProviders(endpoint: string, apiConfig: ClashAPIConfig) {
+export async function fetchRuleProviders(endpoint: string, apiConfig: RoutuneAPIConfig) {
   const { url, init } = getURLAndInit(apiConfig);
 
   let data = { providers: {} };
@@ -53,7 +53,7 @@ export async function refreshRuleProviderByName({
   apiConfig,
 }: {
   name: string;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
 }) {
   const { url, init } = getURLAndInit(apiConfig);
   try {
@@ -75,7 +75,7 @@ export async function updateRuleProviders({
   apiConfig,
 }: {
   names: string[];
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
 }) {
   for (let i = 0; i < names.length; i++) {
     // run in sequence

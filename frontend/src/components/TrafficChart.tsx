@@ -6,7 +6,7 @@ import { State } from '$src/store/types';
 import { fetchData } from '../api/traffic';
 import useLineChart from '../hooks/useLineChart';
 import { chartJSResource, chartStyles, commonDataSetProps } from '../misc/chart';
-import { getClashAPIConfig, getSelectedChartStyleIndex } from '../store/app';
+import { getRoutuneAPIConfig, getSelectedChartStyleIndex } from '../store/app';
 import { connect } from './StateProvider';
 
 const { useMemo } = React;
@@ -18,7 +18,7 @@ const chartWrapperStyle: React.CSSProperties = {
 };
 
 const mapState = (s: State) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
   selectedChartStyleIndex: getSelectedChartStyleIndex(s),
 });
 

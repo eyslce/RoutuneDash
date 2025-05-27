@@ -1,9 +1,9 @@
-import type { ClashAPIConfig } from 'src/types';
+import type { RoutuneAPIConfig } from 'src/types';
 
-export type ClashAPIConfigWithAddedAt = ClashAPIConfig & { addedAt?: number };
+export type RoutuneAPIConfigWithAddedAt = RoutuneAPIConfig & { addedAt?: number };
 export type StateApp = {
-  selectedClashAPIConfigIndex: number;
-  clashAPIConfigs: ClashAPIConfigWithAddedAt[];
+  selectedRoutuneAPIConfigIndex: number;
+  routuneAPIConfigs: RoutuneAPIConfigWithAddedAt[];
 
   latencyTestUrl: string;
   selectedChartStyleIndex: number;
@@ -16,7 +16,7 @@ export type StateApp = {
   logStreamingPaused: boolean;
 };
 
-export type ClashGeneralConfig = {
+export type RoutuneGeneralConfig = {
   port: number;
   'socks-port': number;
   'redir-port': number;
@@ -91,7 +91,7 @@ export type StateLogs = {
 ///// store.configs
 
 export type StateConfigs = {
-  configs: ClashGeneralConfig;
+  configs: RoutuneGeneralConfig;
   haveFetchedConfig: boolean;
 };
 

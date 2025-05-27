@@ -9,7 +9,7 @@ import { State } from 'src/store/types';
 
 import * as connAPI from '../api/connections';
 import useRemainingViewPortHeight from '../hooks/useRemainingViewPortHeight';
-import { getClashAPIConfig } from '../store/app';
+import { getRoutuneAPIConfig } from '../store/app';
 import s from './Connections.module.scss';
 import ConnectionTable from './ConnectionTable';
 import ContentHeader from './ContentHeader';
@@ -247,7 +247,7 @@ function Conn({ apiConfig }) {
 }
 
 const mapState = (s: State) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 export default connect(mapState)(Conn);

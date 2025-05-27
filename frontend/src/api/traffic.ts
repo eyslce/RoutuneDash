@@ -1,4 +1,4 @@
-import { ClashAPIConfig } from '$src/types';
+import { RoutuneAPIConfig } from '$src/types';
 
 import { buildWebSocketURL, getURLAndInit } from '../misc/request-helper';
 
@@ -76,7 +76,7 @@ function pump(reader: ReadableStreamDefaultReader) {
 // similar to ws readyState but not the same
 // https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/readyState
 let wsState: number;
-function fetchData(apiConfig: ClashAPIConfig) {
+function fetchData(apiConfig: RoutuneAPIConfig) {
   if (fetched || wsState === 1) return traffic;
   wsState = 1;
   const url = buildWebSocketURL(apiConfig, endpoint);
@@ -94,7 +94,7 @@ function fetchData(apiConfig: ClashAPIConfig) {
   return traffic;
 }
 
-function fetchDataWithFetch(apiConfig: ClashAPIConfig) {
+function fetchDataWithFetch(apiConfig: RoutuneAPIConfig) {
   if (fetched) return traffic;
   fetched = true;
   const { url, init } = getURLAndInit(apiConfig);

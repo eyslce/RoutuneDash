@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeSwitcher } from 'src/components/shared/ThemeSwitcher';
 import { DOES_NOT_SUPPORT_FETCH, errors, YacdError } from 'src/misc/errors';
-import { getClashAPIConfig } from 'src/store/app';
+import { getRoutuneAPIConfig } from 'src/store/app';
 import { fetchConfigs } from 'src/store/configs';
 import { closeModal } from 'src/store/modals';
 import { State } from 'src/store/types';
@@ -49,7 +49,7 @@ function APIDiscovery({ dispatch, apiConfig, modals }) {
 
 const mapState = (s: State) => ({
   modals: s.modals,
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 export default connect(mapState)(APIDiscovery);

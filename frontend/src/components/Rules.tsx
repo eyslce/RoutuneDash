@@ -7,10 +7,10 @@ import { RulesPageFab } from 'src/components/rules/RulesPageFab';
 import { TextFilter } from 'src/components/shared/TextFitler';
 import { ruleFilterText } from 'src/store/rules';
 import { State } from 'src/store/types';
-import { ClashAPIConfig, RuleType } from 'src/types';
+import { RoutuneAPIConfig, RuleType } from 'src/types';
 
 import useRemainingViewPortHeight from '../hooks/useRemainingViewPortHeight';
-import { getClashAPIConfig } from '../store/app';
+import { getRoutuneAPIConfig } from '../store/app';
 import ContentHeader from './ContentHeader';
 import Rule from './Rule';
 import s from './Rules.module.scss';
@@ -23,7 +23,7 @@ const paddingBottom = 30;
 type ItemData = {
   rules: any[];
   provider: any;
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
 };
 
 function itemKey(index: number, { rules, provider }: ItemData) {
@@ -52,7 +52,7 @@ type RowProps = {
   index: number;
   style: React.CSSProperties;
   data: {
-    apiConfig: ClashAPIConfig;
+    apiConfig: RoutuneAPIConfig;
     rules: RuleType[];
     provider: { names: string[]; byName: any };
   };
@@ -81,13 +81,13 @@ const Row = memo(({ index, style, data }: RowProps) => {
 }, areEqual);
 
 const mapState = (s: State) => ({
-  apiConfig: getClashAPIConfig(s),
+  apiConfig: getRoutuneAPIConfig(s),
 });
 
 export default connect(mapState)(Rules);
 
 type RulesProps = {
-  apiConfig: ClashAPIConfig;
+  apiConfig: RoutuneAPIConfig;
 };
 
 function Rules({ apiConfig }: RulesProps) {
