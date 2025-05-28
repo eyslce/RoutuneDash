@@ -8,4 +8,4 @@ cache.db
 config.yaml
 config.yaml.bak
 Country.mmdb
-routune.log
+*.log
