@@ -1,40 +1,37 @@
-import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import * as path from 'path';
-// @ts-ignore
-import * as pkg from './package.json';
+import tsconfigPaths from "vite-tsconfig-paths"
+import { VitePWA } from 'vite-plugin-pwa'
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  define: {
-    __VERSION__: JSON.stringify(pkg.version),
-    'process.env.NODE_ENV': JSON.stringify(mode),
-    'process.env.PUBLIC_URL': JSON.stringify('./'),
-  },
-  base: './',
-  resolve: {
-    alias: {
-      $src: path.resolve(__dirname, './src'),
-      src: path.resolve(__dirname, './src'),
-    },
-  },
-  publicDir: 'assets',
-  build: {
-    // sourcemap: true,
-    // the default value is 'dist'
-    // which make more sense
-    // but change this may break other people's tools
-    outDir: 'dist',
-  },
+// https://vite.dev/config/
+export default defineConfig({
   plugins: [
-    react(),
+    react(), 
+    tsconfigPaths(),
     VitePWA({
-      srcDir: 'src',
-      outDir: 'dist',
-      filename: 'sw.ts',
-      strategies: 'injectManifest',
-      base: './',
-    }),
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+      },
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      manifest: {
+        name: 'RoutuneDash',
+        short_name: 'RoutuneDash',
+        description: 'RoutuneDash Application',
+        theme_color: '#ffffff',
+        icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    })
   ],
-}));
+})

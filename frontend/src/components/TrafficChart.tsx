@@ -1,59 +1,42 @@
-import * as React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Box } from "@chakra-ui/react";
+import { useColorMode } from "@/components/ui/color-mode";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
-import { State } from '$src/store/types';
+const data = Array.from({ length: 20 }, (_, i) => ({
+  name: i,
+  upload: 0,
+  download: 0,
+}));
 
-import { fetchData } from '../api/traffic';
-import useLineChart from '../hooks/useLineChart';
-import { chartJSResource, chartStyles, commonDataSetProps } from '../misc/chart';
-import { getRoutuneAPIConfig, getSelectedChartStyleIndex } from '../store/app';
-import { connect } from './StateProvider';
-
-const { useMemo } = React;
-
-const chartWrapperStyle: React.CSSProperties = {
-  // make chartjs chart responsive
-  position: 'relative',
-  maxWidth: 1000,
-};
-
-const mapState = (s: State) => ({
-  apiConfig: getRoutuneAPIConfig(s),
-  selectedChartStyleIndex: getSelectedChartStyleIndex(s),
-});
-
-export default connect(mapState)(TrafficChart);
-
-function TrafficChart({ apiConfig, selectedChartStyleIndex }) {
-  const ChartMod = chartJSResource.read();
-  const traffic = fetchData(apiConfig);
-  const { t } = useTranslation();
-  const data = useMemo(
-    () => ({
-      labels: traffic.labels,
-      datasets: [
-        {
-          ...commonDataSetProps,
-          ...chartStyles[selectedChartStyleIndex].up,
-          label: t('Up'),
-          data: traffic.up,
-        },
-        {
-          ...commonDataSetProps,
-          ...chartStyles[selectedChartStyleIndex].down,
-          label: t('Down'),
-          data: traffic.down,
-        },
-      ],
-    }),
-    [traffic, selectedChartStyleIndex, t]
-  );
-
-  useLineChart(ChartMod.Chart, 'trafficChart', data, traffic);
+export default function TrafficChart() {
+  const { colorMode } = useColorMode();
 
   return (
-    <div style={chartWrapperStyle}>
-      <canvas id="trafficChart" />
-    </div>
+    <Box 
+      bg={colorMode === 'dark' ? "#23262F" : "#f7fafc"} 
+      borderRadius="md" 
+      p={4} 
+      mt={4}
+      border="1px solid"
+      borderColor={colorMode === 'dark' ? "#4a5568" : "#e2e8f0"}
+    >
+      <LineChart width={700} height={250} data={data}>
+        <CartesianGrid 
+          strokeDasharray="3 3" 
+          stroke={colorMode === 'dark' ? "#444" : "#e2e8f0"} 
+        />
+        <XAxis 
+          dataKey="name" 
+          stroke={colorMode === 'dark' ? "#A0AEC0" : "#4a5568"} 
+        />
+        <YAxis 
+          stroke={colorMode === 'dark' ? "#A0AEC0" : "#4a5568"} 
+        />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="upload" stroke="#90cdf4" name="上传" />
+        <Line type="monotone" dataKey="download" stroke="#b9e97c" name="下载" />
+      </LineChart>
+    </Box>
   );
 }
