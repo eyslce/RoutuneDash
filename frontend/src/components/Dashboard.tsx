@@ -1,20 +1,17 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
-import { useColorMode } from "@/components/ui/color-mode";
 import StatCard from "./StatCard";
 import TrafficChart from "./TrafficChart";
 
 export default function Dashboard() {
-  const { colorMode } = useColorMode();
-
   return (
     <Box 
       flex="1" 
-      bg={colorMode === 'dark' ? "#181A20" : "#ffffff"} 
+      bg="bg" 
       p={8} 
       minH="100vh"
     >
       <Heading 
-        color={colorMode === 'dark' ? "#fff" : "#2d3748"} 
+        color="fg" 
         mb={6}
       >
         概览

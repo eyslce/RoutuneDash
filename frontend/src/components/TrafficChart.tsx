@@ -13,12 +13,12 @@ export default function TrafficChart() {
 
   return (
     <Box 
-      bg={colorMode === 'dark' ? "#23262F" : "#f7fafc"} 
+      bg="bg.subtle" 
       borderRadius="md" 
       p={4} 
       mt={4}
       border="1px solid"
-      borderColor={colorMode === 'dark' ? "#4a5568" : "#e2e8f0"}
+      borderColor="border.subtle"
     >
       <LineChart width={700} height={250} data={data}>
         <CartesianGrid 
