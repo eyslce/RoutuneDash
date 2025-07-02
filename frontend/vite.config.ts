@@ -2,9 +2,16 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from "vite-tsconfig-paths"
 import { VitePWA } from 'vite-plugin-pwa'
+import pkg from './package.json'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  define: {
+    __VERSION__: JSON.stringify(pkg.version),
+    'process.env.NODE_ENV': JSON.stringify(mode),
+    'process.env.PUBLIC_URL': JSON.stringify('./'),
+  },
+  base: './',
   plugins: [
     react(), 
     tsconfigPaths(),
@@ -34,4 +41,4 @@ export default defineConfig({
       }
     })
   ],
-})
+}))

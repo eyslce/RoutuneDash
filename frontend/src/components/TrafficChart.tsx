@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { useColorMode } from "@/components/ui/color-mode";
+import { useTranslation } from "react-i18next";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 const data = Array.from({ length: 20 }, (_, i) => ({
@@ -10,6 +11,7 @@ const data = Array.from({ length: 20 }, (_, i) => ({
 
 export default function TrafficChart() {
   const { colorMode } = useColorMode();
+  const { t } = useTranslation();
 
   return (
     <Box 
@@ -34,8 +36,8 @@ export default function TrafficChart() {
         />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="upload" stroke="#90cdf4" name="上传" />
-        <Line type="monotone" dataKey="download" stroke="#b9e97c" name="下载" />
+        <Line type="monotone" dataKey="upload" stroke="#90cdf4" name={t("dashboard.upload")} />
+        <Line type="monotone" dataKey="download" stroke="#b9e97c" name={t("dashboard.download")} />
       </LineChart>
     </Box>
   );

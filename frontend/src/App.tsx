@@ -1,25 +1,27 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/Dashboard";
 
 export default function App() {
-  const [selectedMenu, setSelectedMenu] = useState("概览");
+  const { t } = useTranslation();
+  const [selectedMenu, setSelectedMenu] = useState(t("menu.overview"));
 
   const renderContent = () => {
     switch (selectedMenu) {
-      case "概览":
+      case t("menu.overview"):
         return <Dashboard />;
-      case "代理":
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">代理页面 - 开发中</Box>;
-      case "规则":
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">规则页面 - 开发中</Box>;
-      case "连接":
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">连接页面 - 开发中</Box>;
-      case "配置":
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">配置页面 - 开发中</Box>;
-      case "日志":
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">日志页面 - 开发中</Box>;
+      case t("menu.proxy"):
+        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.proxy_developing")}</Box>;
+      case t("menu.rules"):
+        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.rules_developing")}</Box>;
+      case t("menu.connections"):
+        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.connections_developing")}</Box>;
+      case t("menu.settings"):
+        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.settings_developing")}</Box>;
+      case t("menu.logs"):
+        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.logs_developing")}</Box>;
       default:
         return <Dashboard />;
     }
