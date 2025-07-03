@@ -68,9 +68,6 @@ go install github.com/wailsapp/wails/v2/cmd/wails@latest
 wails dev
 ```
 
-## 许可证
-
-[在此添加许可证信息]
 
 ## 贡献
 
@@ -79,4 +76,3 @@ wails dev
 ## 致谢
 
 - [Wails](https://wails.io/) - 用于构建桌面应用
-- [Routune](https://github.com/eyslce/routune) - 核心功能实现
