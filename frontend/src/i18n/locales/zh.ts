@@ -32,7 +32,19 @@ export default {
     rules_developing: '规则页面 - 开发中', 
     connections_developing: '连接页面 - 开发中',
     settings_developing: '配置页面 - 开发中',
-    logs_developing: '日志页面 - 开发中',
+    logs: '日志',
+  },
+  
+  // 日志页面
+  logs: {
+    pause: '暂停',
+    resume: '继续',
+    clear: '清除',
+    empty: '暂无日志',
+    total: '共 {{count}} 条日志记录',
+    autoscroll: '自动滚动',
+    paused: '已暂停',
+    live: '实时监听',
   },
   
   // 通用

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/Dashboard";
+import Logs from "@/components/Logs";
 
 export default function App() {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export default function App() {
       case t("menu.settings"):
         return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.settings_developing")}</Box>;
       case t("menu.logs"):
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.logs_developing")}</Box>;
+        return <Logs />;
       default:
         return <Dashboard />;
     }

@@ -34,7 +34,7 @@ export function LanguageSwitcher() {
             alignItems="center"
             justifyContent="center"
           >
-            <FaLanguage size={16} />
+            <FaLanguage size={24} />
           </Button>
         </MenuTrigger>
         <MenuContent 

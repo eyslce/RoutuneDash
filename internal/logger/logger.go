@@ -1,19 +1,30 @@
 package logger
 
 import (
+	"context"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/eyslce/lumberjack"
 	routunelog "github.com/eyslce/routune/log"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 var (
 	logger *log.Logger
 )
 
-func InitLogger(workDir string) {
+// LogEntry represents a log entry for frontend
+type LogEntry struct {
+	Timestamp string `json:"timestamp"`
+	Level     string `json:"level"`
+	Message   string `json:"message"`
+}
+
+func InitLogger(ctx context.Context, workDir string) {
 	logFile := filepath.Join(workDir, "routune.log")
 
 	logger = log.New(os.Stdout, "", log.Lshortfile|log.Ldate|log.Ltime)
@@ -27,29 +38,54 @@ func InitLogger(workDir string) {
 		DailyRolling: true,
 	})
 
-	go subscribeRoutuneLog()
+	go subscribeRoutuneLog(ctx)
+	go testLog()
 }
 
-func subscribeRoutuneLog() {
-	for msg := range routunelog.Subscribe() {
-		event := msg.(routunelog.Event)
-		switch event.LogLevel {
-		case routunelog.INFO:
-			logger.Println("INFO: ", event.Payload)
-		case routunelog.WARNING:
-			logger.Println("WARNING: ", event.Payload)
-		case routunelog.ERROR:
-			logger.Println("ERROR: ", event.Payload)
-		case routunelog.DEBUG:
-			logger.Println("DEBUG: ", event.Payload)
-		case routunelog.SILENT:
-			logger.Println("SILENT: ", event.Payload)
-		default:
-			logger.Println(event.Payload)
+func testLog() {
+	for {
+		select {
+		case <-time.After(5 * time.Second):
+			routunelog.Infoln("This is a test log message")
 		}
 	}
 }
 
-func GetLogger() *log.Logger {
-	return logger
+func subscribeRoutuneLog(ctx context.Context) {
+	for msg := range routunelog.Subscribe() {
+		event := msg.(routunelog.Event)
+
+		message := fmt.Sprintf("%v", event.Payload)
+		var levelStr string
+
+		// 写入日志文件并设置级别字符串
+		switch event.LogLevel {
+		case routunelog.INFO:
+			logger.Println("INFO: ", message)
+			levelStr = "INFO"
+		case routunelog.WARNING:
+			logger.Println("WARNING: ", message)
+			levelStr = "WARNING"
+		case routunelog.ERROR:
+			logger.Println("ERROR: ", message)
+			levelStr = "ERROR"
+		case routunelog.DEBUG:
+			logger.Println("DEBUG: ", message)
+			levelStr = "DEBUG"
+		case routunelog.SILENT:
+			logger.Println("SILENT: ", message)
+			levelStr = "SILENT"
+		default:
+			logger.Println(message)
+			levelStr = "INFO"
+		}
+
+		// 发送实时日志事件到前端
+		logEntry := LogEntry{
+			Timestamp: time.Now().Format("2006/01/02 15:04:05"),
+			Level:     levelStr,
+			Message:   message,
+		}
+		runtime.EventsEmit(ctx, "new-log", logEntry)
+	}
 }

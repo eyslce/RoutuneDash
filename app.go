@@ -52,7 +52,7 @@ func (a *App) initroutune() {
 	currentDir, _ := os.Getwd()
 	constant.SetHomeDir(currentDir)
 	// 初始化日志
-	logger.InitLogger(currentDir)
+	logger.InitLogger(a.ctx, currentDir)
 	// 初始化配置文件
 	a.initConfig(currentDir)
 

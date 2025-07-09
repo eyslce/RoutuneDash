@@ -32,7 +32,7 @@ export default {
     rules_developing: 'Rules Page - Under Development',
     connections_developing: 'Connections Page - Under Development',
     settings_developing: 'Settings Page - Under Development',
-    logs_developing: 'Logs Page - Under Development',
+    logs: 'Logs',
   },
   
   // Common
@@ -42,5 +42,17 @@ export default {
     light: 'Light',
     dark: 'Dark',
     system: 'System',
+  },
+
+  // Logs page
+  logs: {
+    pause: 'Pause',
+    resume: 'Resume',
+    clear: 'Clear',
+    empty: 'No logs',
+    total: '{{count}} log records',
+    autoscroll: 'Auto Scroll',
+    paused: 'Paused',
+    live: 'Live Monitoring',
   },
 }; 
