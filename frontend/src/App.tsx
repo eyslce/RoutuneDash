@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/Dashboard";
 import Logs from "@/components/Logs";
+import Connections from "@/components/Connections";
 
 export default function App() {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ export default function App() {
       case t("menu.rules"):
         return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.rules_developing")}</Box>;
       case t("menu.connections"):
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.connections_developing")}</Box>;
+        return <Connections />;
       case t("menu.settings"):
         return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.settings_developing")}</Box>;
       case t("menu.logs"):

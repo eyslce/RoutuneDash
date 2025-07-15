@@ -85,8 +85,8 @@ export default function Logs() {
 
 
   return (
-    <Box flex={1} bg="bg" p={8} h="100vh" color="fg" display="flex" flexDirection="column">
-      <VStack gap={4} align="stretch" flex={1}>
+    <Box flex={1} bg="bg" p={8} height="100%" color="fg" display="flex" flexDirection="column" overflow="hidden">
+      <VStack gap={4} align="stretch" flex={1} overflow="hidden">
         {/* Header */}
         <HStack justify="space-between" align="center">
           <Text fontSize="2xl" fontWeight="bold">
@@ -124,7 +124,7 @@ export default function Logs() {
           border="1px solid"
           borderColor="border.subtle"
           overflowY="auto"
-          overflowX="hidden"
+          overflowX="auto"
           p={4}
           fontFamily="mono"
           fontSize="sm"

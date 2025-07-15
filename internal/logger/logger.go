@@ -39,17 +39,8 @@ func InitLogger(ctx context.Context, workDir string) {
 	})
 
 	go subscribeRoutuneLog(ctx)
-	go testLog()
 }
 
-func testLog() {
-	for {
-		select {
-		case <-time.After(5 * time.Second):
-			routunelog.Infoln("This is a test log message")
-		}
-	}
-}
 
 func subscribeRoutuneLog(ctx context.Context) {
 	for msg := range routunelog.Subscribe() {
