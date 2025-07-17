@@ -1,6 +1,4 @@
 import { Box, VStack, Icon, Text } from "@chakra-ui/react";
-import { ColorModeButton } from "@/components/ui/color-mode";
-import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { FaChartBar, FaGlobe, FaPencilRuler, FaLink, FaCog, FaBook } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -50,18 +48,7 @@ export default function Sidebar({ selectedMenu, onMenuSelect }: SidebarProps) {
             </Box>
           );
         })}
-        <Box
-          position="absolute"
-          bottom={4}
-          w="full"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          gap={2}
-        >
-          <LanguageSwitcher />
-          <ColorModeButton />
-        </Box>
+
       </VStack>
     </Box>
   );

@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/Dashboard";
 import Logs from "@/components/Logs";
 import Connections from "@/components/Connections";
+import Settings from "@/components/Settings";
 
 export default function App() {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export default function App() {
       case t("menu.connections"):
         return <Connections />;
       case t("menu.settings"):
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.settings_developing")}</Box>;
+        return <Settings />;
       case t("menu.logs"):
         return <Logs />;
       default:

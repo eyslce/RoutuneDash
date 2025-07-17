@@ -72,6 +72,33 @@ export default {
     gb: 'GB',
   },
   
+  // Settings page
+  settings: {
+    title: 'System Settings',
+    port_settings: 'Port Settings',
+    http_port: 'Http Port',
+    socks5_port: 'Socks5 Port',
+    mixed_port: 'Mixed Port',
+    redir_port: 'Redir Port',
+    mode_settings: 'Mode Settings',
+    mode: 'Mode',
+    log_level: 'Log Level',
+    network_settings: 'Network Settings',
+    allow_lan: 'Allow LAN Connection',
+    sni_sniffing: 'SNI Sniffing',
+    language_settings: 'Language Settings',
+    language: 'Language',
+    theme_settings: 'Theme Settings',
+    theme: 'Theme',
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+    save: 'Save',
+    reset: 'Reset',
+    saved: 'Settings saved',
+    reset_confirm: 'Are you sure you want to reset all settings?',
+  },
+
   // Common
   common: {
     language: 'Language',

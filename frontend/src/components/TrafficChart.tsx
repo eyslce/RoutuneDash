@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useColorMode } from "@/components/ui/color-mode";
+import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
@@ -10,7 +10,7 @@ const data = Array.from({ length: 20 }, (_, i) => ({
 }));
 
 export default function TrafficChart() {
-  const { colorMode } = useColorMode();
+  const { resolvedTheme } = useTheme();
   const { t } = useTranslation();
 
   return (
@@ -25,14 +25,14 @@ export default function TrafficChart() {
       <LineChart width={700} height={250} data={data}>
         <CartesianGrid 
           strokeDasharray="3 3" 
-          stroke={colorMode === 'dark' ? "#444" : "#e2e8f0"} 
+          stroke={resolvedTheme === 'dark' ? "#444" : "#e2e8f0"} 
         />
         <XAxis 
           dataKey="name" 
-          stroke={colorMode === 'dark' ? "#A0AEC0" : "#4a5568"} 
+          stroke={resolvedTheme === 'dark' ? "#A0AEC0" : "#4a5568"} 
         />
         <YAxis 
-          stroke={colorMode === 'dark' ? "#A0AEC0" : "#4a5568"} 
+          stroke={resolvedTheme === 'dark' ? "#A0AEC0" : "#4a5568"} 
         />
         <Tooltip />
         <Legend />

@@ -1,8 +1,13 @@
-import { Button, MenuContent, MenuItem, MenuRoot, MenuTrigger, Box } from "@chakra-ui/react";
+import { Button, MenuContent, MenuItem, MenuRoot, MenuTrigger, Box, createListCollection, For } from "@chakra-ui/react";
+import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 import { FaLanguage } from "react-icons/fa";
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  variant?: 'icon' | 'select';
+}
+
+export function LanguageSwitcher({ variant = 'icon' }: LanguageSwitcherProps) {
   const { i18n, t } = useTranslation();
 
   const languages = [
@@ -13,6 +18,34 @@ export function LanguageSwitcher() {
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
   };
+
+  if (variant === 'select') {
+    const languageOptions = createListCollection({
+      items: languages.map(lang => ({ label: lang.name, value: lang.code })),
+    });
+
+    return (
+      <SelectRoot
+        collection={languageOptions}
+        size="sm"
+        value={[i18n.language]}
+        onValueChange={(e) => handleLanguageChange(e.value as unknown as string)}
+      >
+        <SelectTrigger>
+          <SelectValueText placeholder="选择语言" />
+        </SelectTrigger>
+        <SelectContent>
+          <For each={languageOptions.items}>
+            {(item) => (
+              <SelectItem item={item} key={item.value}>
+                {item.label}
+              </SelectItem>
+            )}
+          </For>
+        </SelectContent>
+      </SelectRoot>
+    );
+  }
 
   return (
     <Box position="relative">

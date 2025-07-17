@@ -84,6 +84,33 @@ export default {
     live: '实时监听',
   },
   
+  // 配置页面
+  settings: {
+    title: '系统配置',
+    port_settings: '端口设置',
+    http_port: 'Http 端口',
+    socks5_port: 'Socks5 端口',
+    mixed_port: '混合端口',
+    redir_port: '重定向端口',
+    mode_settings: '模式设置',
+    mode: '模式',
+    log_level: '日志级别',
+    network_settings: '网络设置',
+    allow_lan: '允许局域网连接',
+    sni_sniffing: 'SNI 嗅探',
+    language_settings: '语言设置',
+    language: '语言',
+    theme_settings: '主题设置',
+    theme: '主题',
+    light: '浅色',
+    dark: '深色',
+    system: '跟随系统',
+    save: '保存',
+    reset: '重置',
+    saved: '配置已保存',
+    reset_confirm: '确定要重置所有配置吗？',
+  },
+
   // 通用
   common: {
     language: '语言',
