@@ -109,7 +109,7 @@ export const ColorModeButton = React.forwardRef<
 export const ColorModeSelect = React.forwardRef<
   HTMLSelectElement,
   { size?: "sm" | "md" | "lg" }
->(function ColorModeSelect({ size = "sm", ...props }, ref) {
+>(function ColorModeSelect({ size = "sm", ...props }) {
   const { colorMode, setColorMode } = useColorMode()
   const { t } = useTranslation()
 

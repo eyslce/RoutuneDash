@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/app.png" alt="RoutuneDash" width="600">
+</div>
+
 # RoutuneDash
 
 ## 简介

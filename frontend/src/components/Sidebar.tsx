@@ -1,4 +1,4 @@
-import { Box, VStack, Icon, Text } from "@chakra-ui/react";
+import { Box, VStack, Icon, Text, Image } from "@chakra-ui/react";
 import { FaChartBar, FaGlobe, FaPencilRuler, FaLink, FaCog, FaBook } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -30,6 +30,7 @@ export default function Sidebar({ selectedMenu, onMenuSelect }: SidebarProps) {
       borderColor="border.subtle"
     >
       <VStack gap={6}>
+        <Image src="/favicon.ico" boxSize="60px" alt="logo" height={50}  />
         {menuItems.map((item) => {
           const label = t(`menu.${item.key}`);
           return (
