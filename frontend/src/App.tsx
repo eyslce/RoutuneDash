@@ -1,4 +1,4 @@
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/Sidebar";
@@ -7,6 +7,7 @@ import Logs from "@/components/Logs";
 import Connections from "@/components/Connections";
 import Settings from "@/components/Settings";
 import Rules from "@/components/Rules";
+import Proxy from "@/components/Proxy";
 
 export default function App() {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ export default function App() {
       case t("menu.overview"):
         return <Dashboard />;
       case t("menu.proxy"):
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.proxy_developing")}</Box>;
+        return <Proxy />;
       case t("menu.rules"):
         return <Rules />;
       case t("menu.connections"):

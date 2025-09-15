@@ -28,11 +28,29 @@ export default {
   
   // 页面状态
   pages: {
-    proxy_developing: '代理页面 - 开发中',
-    rules_developing: '规则页面 - 开发中', 
-    connections_developing: '连接页面 - 开发中',
-    settings_developing: '配置页面 - 开发中',
     logs: '日志',
+  },
+
+  proxy: {
+    add_proxy: "添加代理",
+    edit_proxy: "编辑代理",
+    delete_proxy_title: "删除代理",
+    delete_proxy_confirm: "您确定要删除此代理吗？",
+    not_tested: "未测速",
+    testing: "测速中...",
+    test_speed: "测速",
+    test_success: "速度测试完成。",
+    edit: "编辑",
+    delete: "删除",
+    form: {
+      name: "名称",
+      name_placeholder: "例如：我的节点",
+      type: "类型",
+      address: "地址",
+      address_placeholder: "例如：example.com 或 1.1.1.1",
+      port: "端口",
+      port_placeholder: "例如：1080",
+    },
   },
   
   // 规则页面
@@ -150,5 +168,7 @@ export default {
     light: '浅色',
     dark: '深色',
     system: '跟随系统',
+    save: "保存",
+    cancel: "取消",
   },
 }; 

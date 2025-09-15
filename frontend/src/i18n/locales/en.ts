@@ -28,12 +28,31 @@ export default {
   
   // Page status
   pages: {
-    proxy_developing: 'Proxy Page - Under Development',
-    rules_developing: 'Rules Page - Under Development',
-    connections_developing: 'Connections Page - Under Development',
-    settings_developing: 'Settings Page - Under Development',
     logs: 'Logs',
   },
+  
+  proxy: {
+    add_proxy: "Add Proxy",
+    edit_proxy: "Edit Proxy",
+    delete_proxy_title: "Delete Proxy",
+    delete_proxy_confirm: "Are you sure you want to delete this proxy?",
+    not_tested: "Not Tested",
+    testing: "Testing...",
+    test_speed: "Test Speed",
+    test_success: "Speed test completed.",
+    edit: "Edit",
+    delete: "Delete",
+    form: {
+      name: "Name",
+      name_placeholder: "e.g. My Node",
+      type: "Type",
+      address: "Address",
+      address_placeholder: "e.g. example.com or 1.1.1.1",
+      port: "Port",
+      port_placeholder: "e.g. 1080",
+    },
+  },
+
   
   // Rules page
   rules: {
@@ -138,6 +157,8 @@ export default {
     light: 'Light',
     dark: 'Dark',
     system: 'System',
+    save: "Save",
+    cancel: "Cancel",
   },
 
   // Logs page
