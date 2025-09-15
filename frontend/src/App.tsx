@@ -6,6 +6,7 @@ import Dashboard from "@/components/Dashboard";
 import Logs from "@/components/Logs";
 import Connections from "@/components/Connections";
 import Settings from "@/components/Settings";
+import Rules from "@/components/Rules";
 
 export default function App() {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ export default function App() {
       case t("menu.proxy"):
         return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.proxy_developing")}</Box>;
       case t("menu.rules"):
-        return <Box flex={1} bg="bg" p={8} minH="100vh" color="fg">{t("pages.rules_developing")}</Box>;
+        return <Rules />;
       case t("menu.connections"):
         return <Connections />;
       case t("menu.settings"):

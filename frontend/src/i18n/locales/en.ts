@@ -34,6 +34,38 @@ export default {
     settings_developing: 'Settings Page - Under Development',
     logs: 'Logs',
   },
+  
+  // Rules page
+  rules: {
+    title: 'Network Rules',
+    search_placeholder: 'Search rules...',
+    total_rules: 'Total Rules',
+    active_rules: 'Active Rules',
+    add_rule: 'Add Rule',
+    edit_rule: 'Edit Rule',
+    delete_rule: 'Delete Rule',
+    confirm_delete: 'Are you sure you want to delete this rule?',
+    rule_type: 'Rule Type',
+    rule_name: 'Rule Name',
+    rule_pattern: 'Pattern',
+    rule_target: 'Target',
+    rule_status: 'Status',
+    save: 'Save',
+    cancel: 'Cancel',
+    no_rules: 'No rules found',
+    rule_created: 'Rule created successfully',
+    rule_updated: 'Rule updated successfully',
+    rule_deleted: 'Rule deleted successfully',
+    filter_all: 'All',
+    filter_domain: 'Domain',
+    filter_ip: 'IP',
+    filter_port: 'Port',
+    filter_active: 'Active',
+    filter_inactive: 'Inactive',
+    status_active: 'Active',
+    status_inactive: 'Inactive',
+    rule_priority: 'Priority',
+  },
 
   // Connections page
   connections: {

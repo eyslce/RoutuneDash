@@ -34,6 +34,38 @@ export default {
     settings_developing: '配置页面 - 开发中',
     logs: '日志',
   },
+  
+  // 规则页面
+  rules: {
+    title: '网络规则',
+    search_placeholder: '搜索规则...',
+    total_rules: '规则总数',
+    active_rules: '活跃规则',
+    add_rule: '添加规则',
+    edit_rule: '编辑规则',
+    delete_rule: '删除规则',
+    confirm_delete: '确定要删除此规则吗？',
+    rule_type: '规则类型',
+    rule_name: '规则名称',
+    rule_pattern: '匹配模式',
+    rule_target: '目标',
+    rule_status: '状态',
+    save: '保存',
+    cancel: '取消',
+    no_rules: '未找到规则',
+    rule_created: '规则创建成功',
+    rule_updated: '规则更新成功',
+    rule_deleted: '规则删除成功',
+    filter_all: '全部',
+    filter_domain: '域名',
+    filter_ip: 'IP地址',
+    filter_port: '端口',
+    filter_active: '活跃',
+    filter_inactive: '未活跃',
+    status_active: '活跃',
+    status_inactive: '未活跃',
+    rule_priority: '优先级',
+  },
 
   // 连接页面
   connections: {
