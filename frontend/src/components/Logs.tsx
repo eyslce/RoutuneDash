@@ -90,7 +90,7 @@ export default function Logs() {
         {/* Header */}
         <HStack justify="space-between" align="center">
           <Text fontSize="2xl" fontWeight="bold">
-            {t("pages.logs")}
+            {t("menu.logs")}
           </Text>
           <HStack gap={3}>
             <Button

@@ -25,11 +25,6 @@ export default {
     traffic_chart_title: '24小时流量趋势',
     hour: '时',
   },
-  
-  // 页面状态
-  pages: {
-    logs: '日志',
-  },
 
   proxy: {
     add_proxy: "添加代理",

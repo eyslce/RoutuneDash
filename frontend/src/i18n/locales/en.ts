@@ -26,11 +26,6 @@ export default {
     hour: 'Hour',
   },
   
-  // Page status
-  pages: {
-    logs: 'Logs',
-  },
-  
   proxy: {
     add_proxy: "Add Proxy",
     edit_proxy: "Edit Proxy",
